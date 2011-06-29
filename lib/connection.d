@@ -472,8 +472,11 @@ protected:
         scope handshake = new message.HandShake;
         handshake.decode(msg);
         _peername = handshake.name.dup;
-        messageHandler = _processCallback;
-        assert(handshake.protoversion == 1);
+        if (!_peername)
+            throw new AssertException("Other side did not greet with handshake", __FILE__, __LINE__);
+        if (!handshake.protoversionIsSet)
+            throw new AssertException("Other side did not include protocol version in handshake.", __FILE__, __LINE__);
         onHandshakeDone(_peername);
+        messageHandler = _processCallback;
     }
 }
