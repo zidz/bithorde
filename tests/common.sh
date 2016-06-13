@@ -19,6 +19,7 @@ BINDIR="${BH_BINDIR:-"$(readlink -f $(dirname "$BASH_SOURCE")/..)/build/bin"}"
 SERVER="$BINDIR/bithorded"
 BHUPLOAD="$BINDIR/bhupload"
 BHGET="$BINDIR/bhget"
+BHFUSE="$BINDIR/bhfuse"
 
 function create_testfile() {
     # $1 - filename
